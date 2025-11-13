@@ -13,21 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1) Descargar el código del repo
       - uses: actions/checkout@v4
 
-      # 1) Configurar Node
+      # 2) Configurar Node
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      # 2) Instalar dependencias
+      # 3) Instalar dependencias
       - run: npm ci
 
-      # 3) Build de Next
+      # 4) Build de Next.js
       - run: npm run build
 
-      # 4) Deploy a Firebase Hosting
+      # 5) Deploy a Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
